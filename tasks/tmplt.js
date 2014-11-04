@@ -39,7 +39,6 @@ module.exports = function(grunt) {
                 }
 
             }).forEach(function(filepath) {
-              console.log(filepath)
                 // Read file source.
                 var fileData = grunt.file.read(filepath);
                 var newFilePath = filepath.replace('.' + options.ext, '');
