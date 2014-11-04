@@ -1,7 +1,7 @@
 {
   "name": "grunt-tmplt",
   "description": "Share values between different file types at run time.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/erikportin/grunt-tmplt",
   "author": {
     "name": "Erik Portin",
