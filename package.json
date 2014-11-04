@@ -1,0 +1,41 @@
+{
+  "name": "grunt-tmplt",
+  "description": "The best Grunt plugin ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/erikportin/grunt-tmplt",
+  "author": {
+    "name": "Erik Portin",
+    "email": "erikportin@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/erikportin/grunt-tmplt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erikportin/grunt-tmplt/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/erikportin/grunt-tmplt/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5",
+    "lodash": "~2.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
