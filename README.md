@@ -1,6 +1,6 @@
 # grunt-tmplt
 
-> The best Grunt plugin ever.
+Share values between different file types.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -13,7 +13,7 @@ npm install grunt-tmplt --save-dev
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
-```js
+```
 grunt.loadNpmTasks('grunt-tmplt');
 ```
 
@@ -22,7 +22,7 @@ grunt.loadNpmTasks('grunt-tmplt');
 ### Overview
 In your project's Gruntfile, add a section named `tmplt` to the data object passed into `grunt.initConfig()`.
 
-```js
+```
 grunt.initConfig({
   tmplt: {
     options: {
@@ -37,53 +37,77 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.ext
 Type: `String`
-Default value: `',  '`
+Default value: `'tmplt'`
 
-A string value that is used to do something with whatever.
+File extension that is used to find your template files. To template a javascript file you'll then name it `nameOfJavascriptFile.tmplt.js`, a less file `nameOfLessFile.tmplt.less` and so on.
 
-#### options.punctuation
+#### options.tmpltsrc
 Type: `String`
-Default value: `'.'`
+Default value: `'.tmpltsrc.json'`
 
-A string value that is used to do something else with whatever else.
+JSON source file for your templating data
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+Store the data you want to share between files in `.tmpltsrc.json` like this:
 
-```js
-grunt.initConfig({
-  tmplt: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
+
+```
+{
+	"colorPrimary": "#222",
+	"colorSecondary": "#fff"
+}
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+To use the data in a javascript file name the file `nameOfJavascriptFile.tmplt.js` and insert the data like this:
 
-```js
-grunt.initConfig({
-  tmplt: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
+
 ```
+...
+
+var colorPrimary = "<%= colorPrimary %>";
+var colorSecondary = "<%= colorSecondary %>";
+
+...
+```
+
+and then in a less file called `nameOfLessFile.tmplt.less`
+
+```
+...
+
+.button{
+	color: <%= colorPrimary %>;
+	background-color: <%= colorSecondary %>;
+}
+...
+```
+
+Running the `tmplt task` will then create a javascript file called `nameOfJavascriptFile.js` looking like this:
+
+```
+...
+
+var colorPrimary = "#222";
+var colorSecondary = "#fff";
+
+...
+```
+
+and a less file `nameOfLessFile.less` looking like this:
+
+```
+...
+
+.button{
+	color: #222;
+	background-color: #333;
+}
+...
+``` 
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_

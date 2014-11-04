@@ -25,15 +25,13 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     tmplt: {
-      default_options: {
-        options: {
-          ext: 'tmplt',
-          tmpltsrc: '.tmpltsrc.json'          
-        },
-        files: {
-          src: ['test/assets/*.less', 'test/assets/*.js']
-        }
+      options: {
+        ext: 'tmplt',
+        tmpltsrc: '.tmpltsrc.json'          
       },
+      files: {
+        src: ['test/assets/*.less', 'test/assets/*.js']
+      }
     },
 
     // Unit tests.
