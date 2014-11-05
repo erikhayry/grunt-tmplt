@@ -1,7 +1,7 @@
 {
   "name": "grunt-tmplt",
   "description": "Share values between different file types at run time.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/erikportin/grunt-tmplt",
   "author": {
     "name": "Erik Portin",
@@ -38,6 +38,8 @@
   "keywords": [
     "gruntplugin",
     "template",
+    "grunt",
+    "lodash",
     "share values between js and less",
     "share values between js and sass",
     "share values between js and css"
