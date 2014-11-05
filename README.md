@@ -171,7 +171,7 @@ watch: {
         tasks: ['tmplt']
     },
     tmpltJs: {
-        files: ['assets/scripts/*.js', "globals/**/*.json"],
+        files: ['assets/scripts/*.tmplt.js', "globals/**/*.json"],
         tasks: ['tmplt'] 
     }                        
 },
