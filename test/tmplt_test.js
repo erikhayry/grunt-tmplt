@@ -32,12 +32,37 @@ exports.tmplt = {
   default_options: function(test) {
     test.expect(1);
 
-    var expected = 'var Model = function(){this.height = 200;}';
+    var expected = 'var Model = function(){\n\tthis.height = 200;\n}';
     var actual = grunt.file.read('./test/assets/script.js');
 
     test.equal(actual, expected, 'should describe what the default behavior is.');
 
     test.done();
     grunt.file.delete('./test/assets/script.js');
-  }
+    grunt.file.delete('./test/assets/subFolder/script.js');
+  },
+
+  prefixed: function(test) {
+    test.expect(1);
+
+    var expected = 'var Model = function(){\n\tthis.height = 200;\n}';
+    var actual = grunt.file.read('./build/test/assets/subFolder/dist_script.js');
+
+    test.equal(actual, expected, 'should describe what the default behavior is.');
+
+    test.done();
+    grunt.file.delete('./build/test/assets/subFolder/dist_script.js');
+  },
+
+  flattened: function(test) {
+    test.expect(1);
+
+    var expected = 'var Model = function(){\n\tthis.height = 200;\n}';
+    var actual = grunt.file.read('./build/dist_script.js');
+
+    test.equal(actual, expected, 'should describe what the default behavior is.');
+
+    test.done();
+    grunt.file.delete('./build/dist_script.js');
+  }   
 };

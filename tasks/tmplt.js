@@ -19,7 +19,8 @@ module.exports = function(grunt) {
         var src = [],
             options = this.options({
                 ext: 'tmplt',
-                tmpltsrc: '.tmpltsrc.json'
+                tmpltsrc: '.tmpltsrc.json',
+                prefix: ''
             }),
             data = grunt.file.readJSON(options.tmpltsrc);
 
@@ -28,7 +29,6 @@ module.exports = function(grunt) {
         this.files.forEach(function(f) {
             f.src.filter(function(filepath) {
                 // Warn on and remove invalid source files (if nonull was set).
-
                 if (!grunt.file.exists(filepath)) {
                     grunt.log.warn('Source file "' + filepath + '" not found.');
                     return false;
@@ -44,10 +44,22 @@ module.exports = function(grunt) {
                 var newFilePath = filepath.replace('.' + options.ext, '');
                 var newFileData = _.template(fileData, data);
 
+                var indexOfFileName = filepath.lastIndexOf('/') + 1;
+                var fileName = options.prefix + newFilePath.slice(indexOfFileName);
+                var src = newFilePath.slice(0, indexOfFileName);
+                var dest = (f.dest === 'src') ? '' : f.dest;
+
+                if(f.flatten){
+                  newFilePath = dest + fileName;                                    
+                }
+                else{
+                  newFilePath = dest + src + fileName;
+                }
+
                 grunt.file.write(newFilePath, newFileData);
                 grunt.log.writeln('File "' + newFilePath + '" created.');
 
             });
-        })
+        });
     });
 };
