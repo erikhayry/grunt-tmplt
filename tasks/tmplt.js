@@ -27,6 +27,8 @@ module.exports = function(grunt) {
 
         // Iterate over all specified file groups.
         this.files.forEach(function(f) {
+            console.log(f);  
+          
             f.src.filter(function(filepath) {
                 // Warn on and remove invalid source files (if nonull was set).
                 if (!grunt.file.exists(filepath)) {
@@ -47,7 +49,7 @@ module.exports = function(grunt) {
                 var indexOfFileName = filepath.lastIndexOf('/') + 1;
                 var fileName = options.prefix + newFilePath.slice(indexOfFileName);
                 var src = newFilePath.slice(0, indexOfFileName);
-                var dest = (f.dest === 'src') ? '' : f.dest;
+                var dest = (!f.dest || f.dest === 'src') ? '' : f.dest;
 
                 if(f.flatten){
                   newFilePath = dest + fileName;                                    

@@ -26,9 +26,7 @@ module.exports = function(grunt) {
         // Configuration to be run (and then tested).
         tmplt: {
             default_options: {
-                files: {
-                    src: ['test/assets/*.less', 'test/assets/**/*.js']
-                }
+                src: ['test/assets/*.less', 'test/assets/**/*.js']
             },
             custom_options_1: {
                 options: {
@@ -50,7 +48,7 @@ module.exports = function(grunt) {
                     src: ['test/assets/*.less', 'test/assets/subFolder/*.js'],
                     dest: 'build/'
                 }],
-            }           
+            }
         },
 
         // Unit tests.
