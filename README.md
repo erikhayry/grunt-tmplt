@@ -7,7 +7,7 @@ This plugin requires Grunt `~0.4.5`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
-```shell
+```
 npm install grunt-tmplt --save-dev
 ```
 
@@ -53,8 +53,19 @@ Default value: `'.tmpltsrc.json'`
 
 JSON source file for your templating data
 
-### Src
+### files
+
+#### files.src
 Grunt glob pattern to specify files that should be included
+
+#### files.flatten
+Type: `Boolean`
+Default value: `false`
+
+
+
+#### files.dest
+
 
 
 ### Usage Examples
@@ -70,8 +81,12 @@ Setup in grunt
     		//template data for any file specified in src
       		tmpltsrc: "globals/colours.json"
     	},
-    	//will run tmplt on any *.tmplt.less and *.tmplt.js in the assets folder
-    	src: ["assets/**/*.less", "assets/**/.js"]
+    	files: {
+    		//will run tmplt on any *.tmplt.less and *.tmplt.js in the assets folder
+    		src: ["assets/**/*.less", "assets/**/.js"],
+    		flatten: true, //Remove all path parts from generated dest paths.
+    		dest: 'build/' // Destination path prefix.
+    	}
   	}
   },
 ...
@@ -147,31 +162,41 @@ The setup for using `tmplt` with [grunt-contrib-watch](https://github.com/gruntj
 
 watch: {
     configFiles: {
-        files: ['Gruntfile.js'],
+        files: {
+            src: ['Gruntfile.js']
+        },
         options: {
             reload: true,
             spawn: true
         }
     },
     less: {
-        files: ['**/*.less', '!**/*.tmplt.less'],
+        files: {
+            src: ['**/*.less', '!**/*.tmplt.less']
+        },
         tasks: ['less'],
         options: {
             livereload: true
         }
     },
     js: {
-        files: ['assets/scripts/*.js', '!**/*.tmplt.js'],
+        files: {
+            src: ['assets/scripts/*.js', '!**/*.tmplt.js']
+        },
         options: {
             livereload: true
         }
     },            
     tmpltLess: {
-        files: ['assets/styles/**/*.tmplt.less', "globals/**/*.json"],
+        files: {
+            src: ['assets/styles/**/*.tmplt.less', "globals/**/*.json"]
+        },
         tasks: ['tmplt']
     },
     tmpltJs: {
-        files: ['assets/scripts/*.tmplt.js', "globals/**/*.json"],
+        files: {
+            src: ['assets/scripts/*.tmplt.js', "globals/**/*.json"]
+        },
         tasks: ['tmplt'] 
     }                        
 },

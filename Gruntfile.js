@@ -50,7 +50,7 @@ module.exports = function(grunt) {
                     src: ['test/assets/*.less', 'test/assets/subFolder/*.js'],
                     dest: 'build/'
                 }],
-            }            
+            }           
         },
 
         // Unit tests.

@@ -35,7 +35,7 @@ exports.tmplt = {
     var expected = 'var Model = function(){\n\tthis.height = 200;\n}';
     var actual = grunt.file.read('./test/assets/script.js');
 
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    test.equal(actual, expected, 'default options');
 
     test.done();
     grunt.file.delete('./test/assets/script.js');
@@ -48,7 +48,7 @@ exports.tmplt = {
     var expected = 'var Model = function(){\n\tthis.height = 200;\n}';
     var actual = grunt.file.read('./build/test/assets/subFolder/dist_script.js');
 
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    test.equal(actual, expected, 'prefixed option');
 
     test.done();
     grunt.file.delete('./build/test/assets/subFolder/dist_script.js');
@@ -60,7 +60,7 @@ exports.tmplt = {
     var expected = 'var Model = function(){\n\tthis.height = 200;\n}';
     var actual = grunt.file.read('./build/dist_script.js');
 
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    test.equal(actual, expected, 'flattened option');
 
     test.done();
     grunt.file.delete('./build/dist_script.js');
