@@ -26,8 +26,7 @@ module.exports = function(grunt) {
 
 
         // Iterate over all specified file groups.
-        this.files.forEach(function(f) {
-            console.log(f);  
+        this.files.forEach(function(f) {        
           
             f.src.filter(function(filepath) {
                 // Warn on and remove invalid source files (if nonull was set).
